@@ -26,6 +26,20 @@ export const getFollowingVideos = async ({ pageParam = null }) => {
   return response.json();
 };
 
+export const getUserVideos = async (userId) => {
+  const response = await fetch(`${API_URL}/users/${userId}/videos`, {
+    headers: getHeaders(),
+  });
+  return response.json();
+};
+
+export const getVideoById = async (videoId) => {
+  const response = await fetch(`${API_URL}/videos/${videoId}`, {
+    headers: getHeaders(),
+  });
+  return response.json();
+};
+
 export const likeVideo = async (videoId) => {
   const response = await fetch(`${API_URL}/videos/${videoId}/like`, {
     method: 'POST',

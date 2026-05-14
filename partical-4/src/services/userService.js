@@ -22,6 +22,14 @@ export const getUserProfile = async (userId) => {
   return response.json();
 };
 
+// Alias for getUserProfile
+export const getUserById = async (userId) => {
+  const response = await fetch(`${API_URL}/users/${userId}`, {
+    headers: getHeaders(),
+  });
+  return response.json();
+};
+
 export const followUser = async (userId) => {
   const response = await fetch(`${API_URL}/users/${userId}/follow`, {
     method: 'POST',
@@ -34,6 +42,29 @@ export const unfollowUser = async (userId) => {
   const response = await fetch(`${API_URL}/users/${userId}/follow`, {
     method: 'DELETE',
     headers: getHeaders(),
+  });
+  return response.json();
+};
+
+export const getUserFollowers = async (userId) => {
+  const response = await fetch(`${API_URL}/users/${userId}/followers`, {
+    headers: getHeaders(),
+  });
+  return response.json();
+};
+
+export const getUserFollowing = async (userId) => {
+  const response = await fetch(`${API_URL}/users/${userId}/following`, {
+    headers: getHeaders(),
+  });
+  return response.json();
+};
+
+export const updateUser = async (userId, data) => {
+  const response = await fetch(`${API_URL}/users/${userId}`, {
+    method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify(data),
   });
   return response.json();
 };
